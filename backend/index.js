@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import connectDb from "./dbconnection.js";
 import { Usercontroller } from "./user/user.controller.js";
+import { JobClientcontroller } from "./jobform/jobclient.js";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(
 );
 
 app.use(Usercontroller);
+app.use(JobClientcontroller);
 
 app.use(express.json());
 const Port = 8000;

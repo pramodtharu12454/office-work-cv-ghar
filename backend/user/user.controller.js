@@ -82,5 +82,5 @@ router.post("/user/login", async (req, res) => {
     return res.status(500).send({ message: "Server error" });
   }
 });
-
 export { router as Usercontroller };
+

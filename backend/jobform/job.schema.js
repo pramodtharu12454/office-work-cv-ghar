@@ -4,6 +4,7 @@ const JobApplicationSchema = new mongoose.Schema(
   {
     firstName: { type: String, required: true, trim: true },
     lastName: { type: String, required: true, trim: true },
+    email: { type: String, required: true, trim: true },
     birthMonth: { type: String, required: true },
     birthDay: { type: String, required: true },
     birthYear: { type: String, required: true },

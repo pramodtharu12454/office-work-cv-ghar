@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDb from "./dbconnection.js";
 import { Usercontroller } from "./user/user.controller.js";
 import { JobClientcontroller } from "./jobform/jobclient.js";
+import { CompanyFormController } from "./companyform/company.controller.js";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(
 
 app.use(Usercontroller);
 app.use(JobClientcontroller);
+app.use(CompanyFormController);
 
 app.use(express.json());
 const Port = 8000;

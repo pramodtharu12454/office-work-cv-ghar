@@ -11,6 +11,7 @@ const CompanyListingSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true,
     },
     address: {
       type: String,
@@ -27,20 +28,19 @@ const CompanyListingSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    companyDocument: {
-      type: String, // store file URL (Cloudinary, etc.)
-      required: false,
-    },
     staffNeeded: {
       type: String,
       required: true,
       trim: true,
     },
+    companyDocument: {
+      type: String, // now optional — no file saved
+      default: "",
+    },
   },
   { timestamps: true }
 );
 
-// Prevent model overwrite upon hot reloads
 const CompanyListing =
   mongoose.models.CompanyListing ||
   mongoose.model("CompanyListing", CompanyListingSchema);

@@ -35,36 +35,10 @@ router.post("/job/apply", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
-  try {
-    // Basic validation
-    const { firstName, lastName, email } = req.body;
-    if (!firstName || !lastName || !email) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "firstName, lastName and email required",
-        });
-    }
-
-    const newUser = new User({
-      _id: new mongoose.Types.ObjectId(),
-      ...req.body,
-    });
-
-    await newUser.save();
-    res.status(201).json({ success: true, user: newUser });
-  } catch (err) {
-    console.error(err);
-    // duplicate email case
-    if (err.code === 11000) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Email already exists" });
-    }
-    res.status(500).json({ success: false, message: "Server error" });
-  }
+router.get("/api/staff", async () => {
+  return {
+    message: "✅ Application submitted successfully.",
+  };
 });
 
 export { router as JobClientcontroller };

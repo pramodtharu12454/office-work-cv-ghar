@@ -72,5 +72,16 @@ router.post(
     }
   }
 );
+router.get("/company/forms", async (req, res) => {
+  try {
+    const companies = await CompanyListing.find({}).select(
+      "companyName panNumber address contactPerson contactNumber staffNeeded companyDocument"
+    ); // select fields you want to return
+    return res.status(200).json(companies);
+  } catch (error) {
+    console.error("Error fetching company listings:", error);
+    return res.status(500).json({ message: "Server Error" });
+  }
+});
 
 export { router as CompanyFormController };

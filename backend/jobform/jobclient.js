@@ -35,10 +35,17 @@ router.post("/job/apply", async (req, res) => {
   }
 });
 
-router.get("/api/staff", async () => {
-  return {
-    message: "✅ Application submitted successfully.",
-  };
+router.get("/api/staff", async (req, res) => {
+  try {
+    // Fetch only firstName, lastName, and jobPost
+    const staff = await JobApplicationTable.find({}).select(
+      "firstName lastName jobPost"
+    );
+    return res.status(200).json(staff);
+  } catch (error) {
+    console.error("Error fetching staff applicants:", error);
+    return res.status(500).json({ message: "Server Error" });
+  }
 });
 
 export { router as JobClientcontroller };
